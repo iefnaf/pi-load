@@ -20,7 +20,7 @@ from where it left off.
 
 ## Installation
 
-    pi install @alexlikevibe/pi-load
+    pi install npm:@alexlikevibe/pi-load
 
 Or add directly to your pi config.
 
