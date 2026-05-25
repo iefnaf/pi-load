@@ -4,6 +4,15 @@
   "description": "/load command for pi – resume a shared session from a URL",
   "keywords": ["pi-package", "pi", "extension"],
   "license": "MIT",
+  "author": "iefnaf",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iefnaf/pi-load.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iefnaf/pi-load/issues"
+  },
+  "homepage": "https://github.com/iefnaf/pi-load#readme",
   "type": "module",
   "scripts": {
     "test": "bun test"

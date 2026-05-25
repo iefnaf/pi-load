@@ -1,5 +1,7 @@
 # pi-load
 
+[![npm version](https://img.shields.io/npm/v/pi-load.svg)](https://www.npmjs.com/package/pi-load) [![GitHub](https://img.shields.io/badge/GitHub-iefnaf%2Fpi--load-blue)](https://github.com/iefnaf/pi-load)
+
 A [pi](https://pi.dev) extension that adds a `/load` command for resuming shared sessions.
 
 ## What it does
