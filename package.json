@@ -1,0 +1,24 @@
+{
+  "name": "pi-load",
+  "version": "0.1.0",
+  "description": "/load command for pi – resume a shared session from a URL",
+  "keywords": ["pi-package", "pi", "extension"],
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "bun test"
+  },
+  "files": [
+    "extensions",
+    "README.md",
+    "LICENSE"
+  ],
+  "peerDependencies": {
+    "@mariozechner/pi-coding-agent": "*"
+  },
+  "pi": {
+    "extensions": [
+      "./extensions/load/index.ts"
+    ]
+  }
+}
