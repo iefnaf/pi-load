@@ -1,6 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { parseGistId } from "../extensions/load/session.ts";
-import { extractSessionJsonl } from "../extensions/load/session.ts";
+import { parseGistId, extractSessionJsonl } from "../extensions/load/session.ts";
 
 function makeSessionHtml(data: unknown): string {
   const b64 = Buffer.from(JSON.stringify(data)).toString("base64");
@@ -128,10 +127,21 @@ describe("extractSessionJsonl", () => {
       .toThrow("Invalid session: no session data found");
   });
 
+  it("throws when session-data script is not properly closed", () => {
+    expect(() => extractSessionJsonl('<script id="session-data" type="application/json">abc', "/my/path"))
+      .toThrow("Invalid session: malformed session data");
+  });
+
   it("throws when leafId is not found in entries", () => {
     const badData = { ...baseData, leafId: "nonexistent-id" };
     expect(() => extractSessionJsonl(makeSessionHtml(badData), "/my/path"))
       .toThrow("Invalid session: leafId not found");
+  });
+
+  it("throws when JSON payload is corrupted", () => {
+    const html = `<script id="session-data" type="application/json">aW52YWxpZCBqc29u</script>`;
+    expect(() => extractSessionJsonl(html, "/my/path"))
+      .toThrow("Invalid session: corrupted payload");
   });
 
   it("handles null leafId as empty session (header only)", () => {

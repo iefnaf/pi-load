@@ -56,11 +56,17 @@ export function extractSessionJsonl(html: string, currentCwd: string): string {
   if (idx === -1) throw new Error("Invalid session: no session data found");
   const start = html.indexOf(">", idx) + 1;
   const end = html.indexOf("</script>", start);
+  if (end === -1) throw new Error("Invalid session: malformed session data");
   const raw = html.slice(start, end).trim();
 
   // 2. Decode and parse
   const decoded = Buffer.from(raw, "base64").toString("utf-8");
-  const data: SessionData = JSON.parse(decoded);
+  let data: SessionData;
+  try {
+    data = JSON.parse(decoded);
+  } catch {
+    throw new Error("Invalid session: corrupted payload");
+  }
 
   // 3. Replace cwd
   const header: SessionHeader = { ...data.header, cwd: currentCwd };
