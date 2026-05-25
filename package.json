@@ -1,5 +1,5 @@
 {
-  "name": "pi-load",
+  "name": "@alexlikevibe/pi-load",
   "version": "0.1.0",
   "description": "/load command for pi – resume a shared session from a URL",
   "keywords": ["pi-package", "pi", "extension"],
